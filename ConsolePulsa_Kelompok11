@@ -1,0 +1,149 @@
+import java.util.*;
+
+public class ConsolePulsa_Kelompok11{
+	public static void main(String args[]){
+		Scanner in = new Scanner(System.in);
+		String beli, nomor, krt= "";
+		String jawab, keterangan= "";
+		String alfa = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		String yn, random = "";
+		int jumlah = 0;
+		int no = 0;
+		int pilih = 0;
+		String[][] daftar = {{"0859", "0877", "0878", "0817", "0818","0819"}, {"0811", "0812", "0813", "0821", "0822", "0823", "0852", "0853", "0851"}, {"0898", "0899", "0895", "0896", "0897"}, {"0814", "0815", "0816", "0855", "0856", "0857", "0858"}, {"0889", "0881", "0882", "0883", "0886", "0887", "0888", "0884", "0885"}, {"0832", "0833", "0838", "0831"}};
+		String[] kartu = {"XL", "TELKOMSEL", "TRI", "INDOSAT", "SMARTFREN", "AXIS"};
+		String[] pulsa = {"  5.000", " 10.000", " 20.000", " 50.000", "100.000"};
+				int[] harga = {7000, 12000, 22000, 52000, 102000};
+		String[][] kuota = {{"Hotrod 500MB", "Xtra ON 1GB", "Xtra Combo 10GB", "Xtra Combo 20GB", "Xtra Combo 35GB"}, {"Internet OMG 4GB", "Combo OMG! 4GB", "Combo OMG! 6.5GB", "Internet OMG! 10GB", "Internet OMG! 27GB"},{"AON 2GB         ", "AON 8GB         ", "AON Unlimited", "AddOn 38GB", "MovieMax 30GB", }, {"Yellow 2GB (3 Hari)   ", "Freedom Kuota Harian 7GB", "Freedom Apps 10GB    ", "Freedom Internet 10GB", "Freedom Combo 20 GB   "}, {"Super 4G Kuota  30GB", "Kuota Nonstop 18GB  ", "Kuota Smartplan 13GB", "Volume Base 60 GB  ", "Kuota Smartplan 38GB"}, {"Paket Warnet Axis 3GB", "BOOSTR Sosmed 2GB     ", "Bronet 3GB (7 Hari)    ", "Paket Owsem 16GB     ", "Bronet 12GB       "}};
+		int[][] hargaK = {{5000, 14000, 69000, 179000, 239000}, {39000, 58000, 63000, 89000, 152000}, {19000, 45000, 65000, 81000, 115000}, {5500, 19900, 39800, 50000, 70000}, {60000, 65000, 75000, 100000, 200000}, {2990, 5500, 18900, 43900, 110900}};
+		ArrayList<String> pembelian = new ArrayList<String>();
+
+		System.out.println("");
+		System.out.println("\n \t \t-------------------------------------------------------------");
+		System.out.println("\t \t \t  Selamat Datang Diprogram Beli Pulsa/Kuota");
+		System.out.println("\t\t\t                  Kelompok 12");
+		System.out.println("\t \t-------------------------------------------------------------");
+		System.out.print("Beli apa hari ini? Pulsa/Kuota? ");
+	//	System.out.println(Arrays.deepToString(kuota));
+			beli = in.nextLine();
+
+		while(!beli.equalsIgnoreCase("Pulsa") && !beli.equalsIgnoreCase("Kuota")){
+				System.out.println("Pilihan yang anda masukkan salah!!");
+				System.out.print("Beli apa hari ini? Pulsa/Kuota? ");
+				beli = in.nextLine();
+		}
+		do{
+			if (beli.equalsIgnoreCase("Pulsa")) {
+					System.out.println("Masukkan Nomor!");
+						nomor = in.nextLine();
+					System.out.println("------------------------------");
+						
+						while((nomor.length() < 10 || nomor.length() > 13) && nomor.matches("^[a-zA-Z]+$")){
+							System.out.println("Nomor yang anda masukkan salah!!");
+							System.out.println("Masukkan Nomor!");
+								nomor = in.nextLine();
+							System.out.println("------------------------------");
+						}
+						for(int i = 0; i < daftar.length;i++){
+							for (int j = 0; j < daftar[i].length; j++) {
+								if (nomor.substring(0, 4).equals(daftar[i][j])) {
+									System.out.println(kartu[i]);
+									System.out.println("Daftar pulsa:");
+									for (int d = 0; d < 5; d++) {
+											System.out.println((no+=1) +". " + kartu[i] + " " + pulsa[d] + "\t\tRp " +  harga[d]);
+									}
+									System.out.print("Pilih pulsa: ");
+										pilih = in.nextInt();
+									System.out.println("------------------------------");
+									while(pilih < 1 || pilih >5){
+										System.out.println("Pilihan yang anda masukkan salah!!");
+										System.out.print("Pilih kuota: ");
+											pilih = in.nextInt();
+									}
+									String pp = pulsa[pilih-=1];
+									int hh = harga[pilih--];
+									keterangan += "Pulsa " + kartu[i] + " " + pp + " dengan harga Rp " + hh;
+									jumlah += hh ;
+								}
+							}
+						}
+						no = 0;
+				System.out.println("Pembelian Sukses!!!");
+				System.out.println("------------------------------");
+				pembelian.add(keterangan);
+				keterangan = "";
+
+			}else if (beli.equalsIgnoreCase("Kuota")){
+				System.out.println("Masukkan Nomor!");
+						nomor = in.nextLine();
+				System.out.println("------------------------------");
+
+					while((nomor.length() < 10 || nomor.length() > 13) && nomor.matches("^[a-zA-Z]+$")){
+							System.out.println("Nomor yang anda masukkan salah!!");
+							System.out.println("Masukkan Nomor!");
+								nomor = in.nextLine();
+							System.out.println("------------------------------");
+					}
+					for(int i = 0; i < daftar.length;i++){
+						for (int j = 0; j < daftar[i].length; j++) {
+							if (nomor.substring(0, 4).equals(daftar[i][j])) {
+								System.out.println(kartu[i]);
+								System.out.println("Daftar kuota:");
+								for (int k = 0 ; k < 5; k++) {
+										System.out.println((no+=1) +". " + kartu[i] + " " + kuota[i][k] + "\t\t\tRp " +  hargaK[i][k]);
+								}
+								System.out.print("Pilih kuota: ");
+									pilih = in.nextInt();
+								System.out.println("------------------------------");
+								while(pilih < 1 || pilih >5){
+									System.out.println("Pilihan yang anda masukkan salah!!");
+									System.out.print("Pilih kuota: ");
+									pilih = in.nextInt();
+								}
+								String kk = kuota[i][pilih-=1];
+								int hh = hargaK[i][pilih--];
+
+								keterangan += "Kuota " + kartu[i] + " " + kk + "dengan harga Rp " + hh;
+								jumlah += hh;
+							}
+						}
+					}
+					no = 0;
+				System.out.println("Pembelian Sukses!!");
+				System.out.println("------------------------------");
+				pembelian.add(keterangan);
+				keterangan = "";
+			}
+			System.out.print("Ada tambahan (y/n)?");
+				yn = in.next();
+			System.out.println("");
+			if (yn.equalsIgnoreCase("y")) {
+				System.out.print("Beli apa hari ini? Pulsa/Kuota? ");
+					beli = in.nextLine();
+					beli = in.nextLine();
+				while(!beli.equalsIgnoreCase("Pulsa") && !beli.equalsIgnoreCase("Kuota")){
+					System.out.println("Pilihan yang anda masukkan salah!!");
+					System.out.print("Beli apa hari ini? Pulsa/Kuota? ");
+					beli = in.nextLine();
+				}
+			}else if (yn.equalsIgnoreCase("n")) {
+				System.out.println("------------------------------(: Terimakasih!! :)------------------------------");
+				System.out.println("Pembelian anda: ");
+				for (String aa : pembelian) {
+					System.out.println(aa);
+				}
+				System.out.println("________________________________________________________");
+				System.out.println("Total Pembayaran : Rp. " + jumlah);
+				Random r = new Random();
+				int size = alfa.length();
+
+				for (int i = 0; i < 10 ; i++ ) {
+					random += alfa.charAt(r.nextInt(size));
+				}
+				System.out.println("Kode Pembayaran anda adalah : " + random);
+				System.exit(0);
+			}
+
+		}while(beli.equalsIgnoreCase("Pulsa") || beli.equalsIgnoreCase("Kuota"));
+	}
+}
